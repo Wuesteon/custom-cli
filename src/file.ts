@@ -2,7 +2,7 @@ import { outputFile } from "fs-extra";
 
 export class FileGenerator {
   public static writeFile(path: string, content: string) {
-    path = "src/tmp/" + path;
+    path = "tmp/" + path;
     outputFile(path, content, function (err) {
       if (err) {
         return console.log(err);

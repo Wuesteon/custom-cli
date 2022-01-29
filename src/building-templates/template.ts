@@ -1,4 +1,5 @@
 import { Component } from "./component/component";
+import { Page } from "./page/page";
 import { Service } from "./service/service";
 import { NameObj, WriteFile } from "./types";
 
@@ -15,7 +16,7 @@ export class Template {
         files = Component.Generate("", nameobj);
         break;
       case type == "p" || type == "page":
-        files = Component.Generate("", nameobj);
+        files = Page.Generate("", nameobj);
         break;
       case type == "se" || type == "service":
         files = Service.Generate("", nameobj);
