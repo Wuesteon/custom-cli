@@ -4,6 +4,10 @@ export enum TemplateType {
   "PAGE" = "page"
 }
 export interface NameObj {
-  componentName: string;
-  componentClassName: string;
+  fileName: string;
+  className: string;
+}
+export interface WriteFile {
+  path: string;
+  content: string;
 }

@@ -1,13 +1,13 @@
 import { outputFile } from "fs-extra";
 
 export class FileGenerator {
-  public static writeFile(className: string, content: string) {
-    const path = "src/tmp/" + className + ".ts";
+  public static writeFile(path: string, content: string) {
+    path = "src/tmp/" + path;
     outputFile(path, content, function (err) {
       if (err) {
         return console.log(err);
       }
-      console.log("file " + className + " was created");
+      console.log("file was created at: " + path);
     });
   }
 }

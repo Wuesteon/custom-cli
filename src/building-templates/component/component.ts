@@ -1,8 +1,46 @@
-import { NameObj } from "../types";
+import { NameObj, WriteFile } from "../types";
 
 export class Component {
-  static generateComponentClass(name: Readonly<NameObj>): string {
-    const { componentClassName, componentName } = name;
+  public static Generate(
+    path: string,
+    name: Readonly<NameObj>
+  ): Readonly<WriteFile[]> {
+    const component: WriteFile = {
+      path: `${path}/${name.fileName}.component.ts`,
+      content: Component.GenerateComponentClass(name)
+    };
+    const componentSpec: WriteFile = {
+      path: `${path}/${name.fileName}.component.spec.ts`,
+      content: Component.GenerateComponentSpec(name)
+    };
+
+    const componentModule: WriteFile = {
+      path: `${path}/${name.fileName}.module.ts`,
+      content: Component.GenerateComponentModule(name)
+    };
+
+    const componentScss: WriteFile = {
+      path: `${path}/${name.fileName}.component.scss`,
+      content: Component.GenerateComponentScss()
+    };
+
+    const componentHtml: WriteFile = {
+      path: `${path}/${name.fileName}.component.html`,
+      content: Component.GenerateComponentHtml()
+    };
+
+    const files = [
+      component,
+      componentScss,
+      componentSpec,
+      componentModule,
+      componentHtml
+    ];
+    return files;
+  }
+
+  private static GenerateComponentClass(name: Readonly<NameObj>): string {
+    const { className, fileName } = name;
 
     const componentTemplate = `
     import {
@@ -13,44 +51,47 @@ export class Component {
       } from '@angular/core'
 
         @Component({
-        selector: 'app-${componentName}',
-        templateUrl: './${componentName}.component.html',
-        styleUrls: ['./${componentName}.component.scss'],
+        selector: 'app-${fileName}',
+        templateUrl: './${fileName}.component.html',
+        styleUrls: ['./${fileName}.component.scss'],
         changeDetection: ChangeDetectionStrategy.OnPush,
         })
-        export class ${componentClassName}Component implements OnInit {
+        export class ${className}Component implements OnInit {
         public constructor(private readonly cd: ChangeDetectorRef) {}
         
         public ngOnInit(): void {}
     }
     `;
+
     return componentTemplate;
   }
 
-  generateComponentSpec(name: Readonly<NameObj>): string {
-    const { componentClassName, componentName } = name;
+  private static GenerateComponentSpec(
+    name: Readonly<NameObj>
+  ): Readonly<string> {
+    const { className, fileName } = name;
 
     const componentTemplate = `
     import { ComponentFixture, TestBed } from '@angular/core/testing';
     import { IonicModule } from '@ionic/angular';
     import { runOnPushChangeDetection } from 'app/testing/run-on-push-change-detection';
-    import { ${componentClassName} } from './${componentName}.component';
+    import { ${className} } from './${fileName}.component';
     
-    describe('${componentClassName}', () => {
-      let component: ${componentClassName};
-      let fixture: ComponentFixture<${componentClassName}>;
+    describe('${className}', () => {
+      let component: ${className};
+      let fixture: ComponentFixture<${className}>;
       let store: Store;
     
       beforeEach(async () => {
         store = createStoreSpy();
     
         await TestBed.configureTestingModule({
-          declarations: [${componentClassName}],
+          declarations: [${className}],
           imports: [IonicModule.forRoot()],
           providers: [],
         }).compileComponents();
     
-        fixture = TestBed.createComponent(${componentClassName});
+        fixture = TestBed.createComponent(${className});
         component = fixture.componentInstance;
         fixture.detectChanges();
       });
@@ -59,20 +100,21 @@ export class Component {
         expect(component).toBeTruthy();
       });
     });
-    
     `;
+
     return componentTemplate;
   }
 
-  generateComponentModule(name: Readonly<NameObj>): string {
-    const { componentClassName, componentName } = name;
-
+  private static GenerateComponentModule(
+    name: Readonly<NameObj>
+  ): Readonly<string> {
+    const { className, fileName } = name;
     const componentModuleTemplate = `
     import { CommonModule } from '@angular/common';
     import { NgModule } from '@angular/core';
     import { FormsModule } from '@angular/forms';
     import { IonicModule } from '@ionic/angular';
-    import { ${componentClassName}Component } from './${componentName}.component';
+    import { ${className}Component } from './${fileName}.component';
     
     @NgModule({
       imports: [
@@ -80,16 +122,20 @@ export class Component {
         FormsModule,
         IonicModule,
       ],
-      declarations: [${componentClassName}Component],
-      exports: [${componentClassName}Component],
+      declarations: [${className}Component],
+      exports: [${className}Component],
     })
-    export class ${componentClassName}ComponentModule {}
+    export class ${className}ComponentModule {}
     `;
 
     return componentModuleTemplate;
   }
 
-  generateComponentHtml() {
+  private static GenerateComponentHtml(): Readonly<string> {
     return "<ion-content></ion-content>";
+  }
+
+  private static GenerateComponentScss(): Readonly<string> {
+    return "";
   }
 }
