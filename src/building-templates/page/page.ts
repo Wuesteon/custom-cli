@@ -44,6 +44,7 @@ export class Page {
     ];
     return files;
   }
+
   static GeneratePageRoutingModule(name: Readonly<NameObj>): Readonly<string> {
     const { className, fileName } = name;
 
