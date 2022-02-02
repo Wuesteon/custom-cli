@@ -25,10 +25,10 @@ export class Service {
     import { HttpClient } from '@angular/common/http';
     import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
     import { TestBed } from '@angular/core/testing';
-    import { ${name.className} } from './${name.fileName}.service';
+    import { ${name.className}Service } from './${name.fileName}.service';
 
-    describe('${name.className}', () => {
-        let service: ${name.className};
+    describe('${name.className}Service', () => {
+        let service: ${name.className}Service;
         let httpClient: HttpClient, http: HttpTestingController;
       
         beforeEach(() => {
@@ -38,7 +38,7 @@ export class Service {
       
           http = TestBed.inject(HttpTestingController);
           httpClient = TestBed.inject(HttpClient);
-          service = new ${name.className}(httpClient);
+          service = new ${name.className}Service(httpClient);
         });
       
         afterEach(() => {
