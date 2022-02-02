@@ -89,8 +89,8 @@ import { State, Action, StateContext, NgxsOnInit } from '@ngxs/store';
 
 export class ${name.className}StateModel {}
 
-const STATE_NAME_${name.className.toUpperCase()} = '${name.className.toLocaleLowerCase()}';
-const STATE_DEFAULTS_${name.className.toUpperCase()} = {};
+export const STATE_NAME_${name.className.toUpperCase()} = '${name.className.toLocaleLowerCase()}';
+export const STATE_DEFAULTS_${name.className.toUpperCase()} = {};
 
 @State<${name.className}StateModel>({
   name: STATE_NAME_${name.className.toUpperCase()},
