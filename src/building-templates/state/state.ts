@@ -94,7 +94,7 @@ const STATE_DEFAULTS_${name.className.toUpperCase()} = {};
 
 @State<${name.className}StateModel>({
   name: STATE_NAME_${name.className.toUpperCase()},
-  defaults: 
+  defaults: STATE_DEFAULTS_${name.className.toUpperCase()}
 })
 @Injectable()
 export class ${name.className}State {
