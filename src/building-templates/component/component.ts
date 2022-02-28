@@ -75,23 +75,23 @@ export class Component {
     import { ComponentFixture, TestBed } from '@angular/core/testing';
     import { IonicModule } from '@ionic/angular';
     import { runOnPushChangeDetection } from 'app/testing/run-on-push-change-detection';
-    import { ${className} } from './${fileName}.component';
+    import { ${className}Component } from './${fileName}.component';
     
-    describe('${className}', () => {
-      let component: ${className};
-      let fixture: ComponentFixture<${className}>;
+    describe('${className}Component', () => {
+      let component: ${className}Component;
+      let fixture: ComponentFixture<${className}Component>;
       let store: Store;
     
       beforeEach(async () => {
         store = createStoreSpy();
     
         await TestBed.configureTestingModule({
-          declarations: [${className}],
+          declarations: [${className}Component],
           imports: [IonicModule.forRoot()],
           providers: [],
         }).compileComponents();
     
-        fixture = TestBed.createComponent(${className});
+        fixture = TestBed.createComponent(${className}Component);
         component = fixture.componentInstance;
         fixture.detectChanges();
       });
