@@ -75,11 +75,11 @@ export class Page {
     import {
         ChangeDetectionStrategy,
         ChangeDetectorRef,
-        Page,
+        Component,
         OnInit,
       } from '@angular/core'
 
-        @Page({
+        @Component({
         selector: 'app-${fileName}',
         templateUrl: './${fileName}.page.html',
         styleUrls: ['./${fileName}.page.scss'],
