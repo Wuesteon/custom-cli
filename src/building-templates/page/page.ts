@@ -98,7 +98,7 @@ export class Page {
   private static GeneratePageSpec(name: Readonly<NameObj>): Readonly<string> {
     const { className, fileName } = name;
 
-    const componentTemplate = `
+    const pageTemplate = `
     import { ComponentFixture, TestBed } from '@angular/core/testing';
     import { IonicModule } from '@ionic/angular';
     import { runOnPushChangeDetection } from 'app/testing/run-on-push-change-detection';
@@ -129,12 +129,12 @@ export class Page {
     });
     `;
 
-    return componentTemplate;
+    return pageTemplate;
   }
 
   private static GeneratePageModule(name: Readonly<NameObj>): Readonly<string> {
     const { className, fileName } = name;
-    const componentModuleTemplate = `
+    const pageModuleTemplate = `
     import { CommonModule } from '@angular/common';
     import { NgModule } from '@angular/core';
     import { FormsModule } from '@angular/forms';
@@ -152,10 +152,10 @@ export class Page {
       declarations: [${className}Page],
       exports: [${className}Page],
     })
-    export class ${className}ComponentModule {}
+    export class ${className}PageModule {}
     `;
 
-    return componentModuleTemplate;
+    return pageModuleTemplate;
   }
 
   private static GeneratePageHtml(): Readonly<string> {
