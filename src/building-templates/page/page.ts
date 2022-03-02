@@ -102,23 +102,23 @@ export class Page {
     import { ComponentFixture, TestBed } from '@angular/core/testing';
     import { IonicModule } from '@ionic/angular';
     import { runOnPushChangeDetection } from 'app/testing/run-on-push-change-detection';
-    import { ${className} } from './${fileName}.page';
+    import { ${className}Page } from './${fileName}.page';
     
-    describe('${className}', () => {
-      let page: ${className};
-      let fixture: ComponentFixture<${className}>;
+    describe('${className}Page', () => {
+      let page: ${className}Page;
+      let fixture: ComponentFixture<${className}Page>;
       let store: Store;
     
       beforeEach(async () => {
         store = createStoreSpy();
     
         await TestBed.configureTestingModule({
-          declarations: [${className}],
+          declarations: [${className}Page],
           imports: [IonicModule.forRoot()],
           providers: [],
         }).compileComponents();
     
-        fixture = TestBed.createComponent(${className});
+        fixture = TestBed.createComponent(${className}Page);
         page = fixture.componentInstance;
         fixture.detectChanges();
       });
