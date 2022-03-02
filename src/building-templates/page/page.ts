@@ -51,12 +51,12 @@ export class Page {
     return `
     import { NgModule } from '@angular/core';
     import { Routes, RouterModule } from '@angular/router';
-    import { ${className} } from './${fileName}.page';
+    import { ${className}Page } from './${fileName}.page';
 
     const routes: Routes = [
     {
         path: '',
-        component: ${className},
+        component: ${className}Page,
     },
     ];
 
